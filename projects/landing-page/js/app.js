@@ -47,6 +47,11 @@ const addLiToNav = (sectionArray) => {
   }
 };
 
+// Function to scroll to the top of the page, if 'Main' is clicked
+const scrollToTop = () => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
 // Change CSS class when div is in view, using the Intersection Observer API
 function createObserver() {
   let observer;
