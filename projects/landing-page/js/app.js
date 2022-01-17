@@ -35,19 +35,12 @@
  *
  */
 
-// Scroll to anchor ID using scrollTO event
-
-/*
-const scrollTo = (target) => {
-    var page = document.getElementById(target)
-    page.scrollIntoView({behavior: "smooth"});
-}
-*/
-
 // build the nav
 const sections = Array.from(document.getElementsByTagName("section"))
 //const sections = document.getElementsByTagName("section");
+
 const navbar = document.getElementById("navbar__list");
+
 const addLiToNav = (sectionArray) => {
   for (const sec of sectionArray) {
     // Iterate through the sections, creating a <li> for each.
@@ -57,6 +50,12 @@ const addLiToNav = (sectionArray) => {
     // Add anchor links to each item
     newNavbarItem.innerHTML += `${sec.getElementsByTagName("h2")[0].innerText}`;
     newNavbarItem.setAttribute("data-target", document.getElementById(sec.id));
+    
+    // Give it an ID of navbar_ followed by the section ID
+    const idString = (sec.id.toString())
+    newNavbarItem.setAttribute("id", "navbar_" + idString)
+
+    // Scroll to it when clicked
     newNavbarItem.addEventListener("click", function () {
       sec.scrollIntoView({ behavior: "smooth" });
     });
@@ -66,18 +65,10 @@ const addLiToNav = (sectionArray) => {
   }
 };
 
-// Change CSS class when div is in view
-
 // Add class 'active' to section when near top of viewport
 
-// window.addEventListener("load", (event) => {
-/*  boxElement = document.querySelectorAll("section"); 
-  
-    createObserver();
-  }, false);
-*/
 
-// boxElement = document.querySelector("#section3") // FOR TESTING observer.observe
+// Change CSS class when div is in view
 
 function createObserver() {
   let observer;
@@ -92,25 +83,24 @@ function createObserver() {
   sections.forEach(section => observer.observe(section));
 }
 
-
 const intersectFunc = (secs, observer) => {
   secs.forEach((sec) => {
+    
+    const NavbarButtonId = "navbar_" + (sec.target.id.toString())
+    const relevantNavbarButton = document.getElementById(NavbarButtonId)
+
+    // Change the CSS class of both the section and the corresponding Nav button, if the section is fully in view, remove it when not true
     if (sec.intersectionRatio === 1) {
-      console.log((JSON.stringify(sec.target.id) + " is now IN view"));
-      sec.target.classList.add("your-active-class")
+        console.log((JSON.stringify(sec.target.id) + " is now fully IN view"));
+        sec.target.classList.add("your-active-class")
+        relevantNavbarButton.classList.add("active-navbar-button")
     } else {
-        console.log((JSON.stringify(sec.target.id) + " is now OUT of view"));
+        console.log((JSON.stringify(sec.target.id) + " is now partially or completely OUT of view"));
         sec.target.classList.remove("your-active-class")
+        relevantNavbarButton.classList.remove("active-navbar-button")
     }
   });
 };
-
-document.addEventListener(
-    "DOMContentLoaded",
-    addLiToNav(sections),
-    createObserver()
-  );
-  
 
 /**
  * End Main Functions
@@ -118,9 +108,8 @@ document.addEventListener(
  *
  */
 
-// Build menu
-
-// Scroll to section on link click
-
-// Set sections as active
-
+ document.addEventListener(
+    "DOMContentLoaded",
+    addLiToNav(sections),
+    createObserver()
+  );
