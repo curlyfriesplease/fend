@@ -90,7 +90,7 @@ const resetTimer = () => {
   let timer;
   showNavbar();
   clearTimeout(timer);
-  timer = setTimeout(hideNavbar, 10000);
+  timer = setTimeout(hideNavbar, 5000);
 };
 
 const showNavbar = () => {
