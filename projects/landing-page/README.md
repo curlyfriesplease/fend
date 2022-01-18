@@ -1,9 +1,5 @@
 # Landing Page Project
 
-## Table of Contents
-
-* [Instructions](#instructions)
-
 ## Introduction
 
 This project is an exercise within the Udacity.com "Front End Developer" Course. It serves no functional purpose other than as a learning tool.
@@ -34,3 +30,4 @@ Changes:
 <ol><li>The navbar buttons will become smaller when viewed on mobile</li>
 <li>Background color and border for active section</li>
 <li>Background color and border for active navbar button</li>
+</ol>
