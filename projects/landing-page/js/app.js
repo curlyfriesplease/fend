@@ -85,37 +85,12 @@ const intersectFunc = (secs, observer) => {
   });
 };
 
-/*
-    var prevScrollpos = window.pageYOffset;
-    window.onscroll = function() {
-      var currentScrollPos = window.pageYOffset;
-      if (prevScrollpos > currentScrollPos) {
-        document.getElementById("menu__navbutton").classList.add("hide");
-      } else {
-        document.getElementById("menu__navbutton").classList.remove = "hide";
-      }
-      prevScrollpos = currentScrollPos;
-    }
-
-
-window.onscroll = function() {
-    document.getElementById("menu__navbutton").classList.remove("hide");
-}
-*/
-/*
-const inactiveTime = () => {
-  window.onload = resetTimer();
-  document.onscroll = resetTimer();
-  document.onmousemove = resetTimer();
-  document.onkeypress = resetTimer();
-};
-*/
-
+// Functions to show and hide the navbar for a certain amount of time whenever there's movement
 const resetTimer = () => {
   let timer;
   showNavbar();
   clearTimeout(timer);
-  timer = setTimeout(hideNavbar, 2000);
+  timer = setTimeout(hideNavbar, 10000);
 };
 
 const showNavbar = () => {
