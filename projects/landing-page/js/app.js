@@ -49,11 +49,11 @@ const addLiToNav = (sectionArray) => {
 
 // Function to scroll to the top of the page, if 'Main' is clicked
 const scrollToTop = () => {
-    window.scrollTo({top: 0, behavior: 'smooth'});
-}
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
 
 // Change CSS class when div is in view, using the Intersection Observer API
-function createObserver() {
+const createObserver = () => {
   let observer;
   let options = {
     root: null, // null = the viewport.
@@ -62,7 +62,7 @@ function createObserver() {
   };
   observer = new IntersectionObserver(intersectFunc, options);
   sections.forEach((section) => observer.observe(section));
-}
+};
 
 const intersectFunc = (secs, observer) => {
   secs.forEach((sec) => {
@@ -83,6 +83,55 @@ const intersectFunc = (secs, observer) => {
       relevantNavbarButton.classList.remove("active-navbar-button");
     }
   });
+};
+
+/*
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+      var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        document.getElementById("menu__navbutton").classList.add("hide");
+      } else {
+        document.getElementById("menu__navbutton").classList.remove = "hide";
+      }
+      prevScrollpos = currentScrollPos;
+    }
+
+
+window.onscroll = function() {
+    document.getElementById("menu__navbutton").classList.remove("hide");
+}
+*/
+/*
+const inactiveTime = () => {
+  window.onload = resetTimer();
+  document.onscroll = resetTimer();
+  document.onmousemove = resetTimer();
+  document.onkeypress = resetTimer();
+};
+*/
+
+const resetTimer = () => {
+  let timer;
+  showNavbar();
+  clearTimeout(timer);
+  timer = setTimeout(hideNavbar, 2000);
+};
+
+const showNavbar = () => {
+  document.getElementById("navbar").classList.remove("hide");
+};
+
+const hideNavbar = () => {
+  document.getElementById("navbar").classList.add("hide");
+};
+
+window.onload = () => {
+  resetTimer();
+};
+
+window.onscroll = () => {
+  resetTimer();
 };
 
 // Begin events when the DOM has loaded content
