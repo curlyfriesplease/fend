@@ -40,20 +40,17 @@ const server = app.listen(port, listening());
 // TIP: The POST route in the server side should setup which will map the data sent via the API from the client side and save it
 // in the projectData variable.
 
-// GET
-app.get("/getweather", fetchWeather);
 
-fetchWeather = (req, res) => {
-  res.send(projectData);
-  console.log(req);
-};
+// Get route
+app.get('/getweather', (req, res) => {
+    console.log(req)
+    res.send(projectData);
+});
 
-// POST
-app.post("/addentry", newEntry);
-
-newEntry = () => {
-  projectData += req.body;
-  res.send("added new entry");
-  console.log(req);
-};
+// Post route
+app.post('/addentry', (req, res) => {
+    projectData = req.body;
+    res.send({ message: 'Added new entry'})
+    console.log(req)
+});
 

@@ -2,5 +2,9 @@
     "cSpell.ignoreWords": [
         "Udacity",
         "openweathermap"
+    ],
+    "cSpell.words": [
+        "addentry",
+        "getweather"
     ]
 }

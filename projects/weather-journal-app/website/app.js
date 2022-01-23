@@ -1,82 +1,50 @@
 /* Global Variables */
-
-// Personal API Key for OpenWeatherMap API
+let dataReturnedFromOpenWeather;
+let serverGetResponse;
+let baseURL = "http://api.openweathermap.org/data/2.5/weather?zip=";
 const apiKey = "&appid=6c7f0a92a3509b090ce23203bd21c2de&units=imperial";
 
-// Create a new date instance dynamically with JS
+// Create a new date (in UK format!) instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
+let newDate = d.getDate() + "." + d.getMonth() + 1 + "." + d.getFullYear();
 
-//TODO The API Key variable is passed as a parameter to fetch()
-
-//TODO You should be able to add an entry to the project endpoint using a POST route setup on the server side and executed on the
-//client side as an asynchronous function. The client side function should take two arguments, the URL to make a POST to,
-//and an object holding the data to POST.
-
-//TODO TIP: Implement async calling by the use of promise chaining where you will pass the the mix of API and user responses, to POST
-//endpoint on server side.
-
-// Function to get project data, copied from the Udacity project rubric
-const retrieveData = async () => {
-  const request = await fetch("/weather");
-  try {
-    // Transform into JSON
-    const allData = await request.json();
-    console.log(allData);
-    // Write updated data to DOM elements
-    document.getElementById("temp").innerHTML =
-      Math.round(allData.temp) + "degrees";
-    document.getElementById("content").innerHTML = allData.feel;
-    document.getElementById("date").innerHTML = allData.date;
-  } catch (error) {
-    console.log("error", error);
-    // appropriately handle the error
-  }
-};
-
-//blah blah blah Here is the client side code that would make a GET request to the animal info API:
-// api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
-// api.openweathermap.org/data/2.5/weather?zip=10001&appid=6c7f0a92a3509b090ce23203bd21c2de&units=imperial
-
-let baseURL = "http://api.openweathermap.org/data/2.5/weather?zip=";
-
+// Add an event listener to the Generate Button
 document.getElementById("generate").addEventListener("click", performAction);
 
+// Button function to ensure a zip code's been added, and if so start the chain of events to capture info and update the DOM.
 function performAction() {
   const zipCodeRequested = document.getElementById("zip").value;
-  getWeather(baseURL, zipCodeRequested, apiKey)
-  /*
-    .then(
-        sendNewEntryToServer()
-        )
-    )
-
-
-*/
+  if (zipCodeRequested == "") {
+    alert("Please type in a zipcode!");
+    return;
+  }
+  getWeather(baseURL, zipCodeRequested, apiKey);
 }
 
+// Method to call OpenWeather's API
 const getWeather = async (baseURL, zipCodeRequested, apiKey) => {
   console.log("Requesting weather from " + baseURL + zipCodeRequested + apiKey);
   const res = await fetch(baseURL + zipCodeRequested + apiKey);
   try {
-    const data = await res.json();
-    console.dir(data);
-    return data;
+    dataReturnedFromOpenWeather = await res.json();
+    console.log("Object returned from OpenWeather: ");
+    console.dir(dataReturnedFromOpenWeather);
+    const dataToSendToServer = {
+      date: newDate,
+      location: dataReturnedFromOpenWeather.name,
+      temp: dataReturnedFromOpenWeather.main.temp,
+      content: document.getElementById("feelings").value,
+    };
+    sendNewEntryToServer("/addentry", dataToSendToServer);
   } catch (error) {
-    console.log("Error fetching weather: ", error);
+    console.log("Error fetching weather from OpenWeather: ", error);
   }
-  //TODO function to format data, passed 'data' var. At the end of that func, call sendEntryToServer('/addentry',nameOfFormattedObject)
-  //TODO function to format both creates an object to pass for saving, AND innnerHTML updates the page
 };
 
-let getEntriesFromServer = async (getURL) => {
-    const response = await fetch(getURL);
-    serverRes = await response.json()
-    .then(
-        updateUI(serverRes))
-}
-
+// Method to send some of the API returned information, as well as what the user's input, to the POST endpoint.
 let sendNewEntryToServer = async (url = "", data = {}) => {
+  console.log("Attempting to POST this object:");
+  console.dir(data);
   const res = await fetch(url, {
     method: "POST",
     credentials: "same-origin",
@@ -87,21 +55,38 @@ let sendNewEntryToServer = async (url = "", data = {}) => {
   });
   try {
     const serverRes = await res.json();
-    getEntriesFromServer("/getweather");
-    return serverRes;
+    console.log("POST sent to server. Response is: " + serverRes.message);
+    getEntriesFromServer();
   } catch (error) {
-    console.log("error", error);
+    console.log("Error when making the POST call: ", error);
   }
 };
 
-const updateUI = async (data) => {
-//const request = await fetch("/getweather");
+// Method to call the GET endpoint to obtain the stored data.
+let getEntriesFromServer = async () => {
+  const response = await fetch("/getweather");
   try {
-    //const allData = await request.json();
-    document.getElementById("entryHolder").innerHTML = data[0].body;
-  } catch (error) {
-    console.log("Update UI error: ", error);
+    serverGetResponse = await response.json();
+    console.log("GET sent to server. This is the object returned: ");
+    console.dir(serverGetResponse);
+    updateUI(serverGetResponse);
+  } catch {
+    console.log("Error with GET request: ", error);
   }
 };
 
-// date, temp object[0].main.temp, location object[0].name content
+// Method to update the DOM with the information returned from the GET call.
+const updateUI = async (data) => {
+  try {
+    document.getElementById("date").innerHTML = data.date;
+    document.getElementById("location").innerHTML = data.location;
+    document.getElementById("temp").innerHTML = data.temp;
+    document.getElementById("content").innerHTML = data.content;
+    console.log("DOM has been updated with data.");
+  } catch (error) {
+    console.log("Error updating UI: ", error);
+  }
+};
+
+// On page load, make a GET request so that if a previous entry exists, it's displayed.
+getEntriesFromServer();
