@@ -32,7 +32,7 @@ const getWeather = async (baseURL, zipCodeRequested, apiKey) => {
     const dataToSendToServer = {
       date: newDate,
       location: dataReturnedFromOpenWeather.name,
-      temp: dataReturnedFromOpenWeather.main.temp,
+      temp: dataReturnedFromOpenWeather.main.temp + "°F",
       content: document.getElementById("feelings").value,
     };
     sendNewEntryToServer("/addentry", dataToSendToServer);
