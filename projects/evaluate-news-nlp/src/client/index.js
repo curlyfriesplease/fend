@@ -4,13 +4,14 @@ import './styles/footer.scss'
 import './styles/form.scss'
 import './styles/header.scss'
 
+const regenerator = require('regenerator-runtime/runtime')
+
 console.log("Index JS!!");
 
-document
-  .getElementById("submissionButton")
-  .addEventListener("click", sendTextToServer);
+document.getElementById("submissionButton").addEventListener("click", sendTextToServer);
 
 const sendTextToServer = async () => {
+    alert("button clicked");
   const textToBeSent = document.getElementById("name").value;
   if (textToBeSent == "") {
     alert("Please type in some text to send!");
