@@ -7,6 +7,8 @@ const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
 
 const app = express()
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('dist'))
 
 var AYLIENTextAPI = require('aylien_textapi');
 var textapi = new AYLIENTextAPI({
@@ -14,9 +16,11 @@ var textapi = new AYLIENTextAPI({
   application_key: process.env.API_KEY
 });
 
-app.use(express.static('dist'))
+
 
 console.log(__dirname)
+
+// Routing
 
 app.get('/', function (req, res) {
      res.sendFile('dist/index.html')
@@ -29,9 +33,17 @@ app.listen(8080, function () {
 })
 
 app.get('/test', function (req, res) {
-    res.send(mockAPIResponse)
-})
+	res.send(mockAPIResponse);
+});
+
+app.post('/test', function (req, res) {
+	res.send(mockAPIResponse);
+});
 
 app.get('/text', function (req, res) {
     res.send("text API called, thanks a lot")
 })
+
+
+
+
