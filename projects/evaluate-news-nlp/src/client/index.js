@@ -6,11 +6,6 @@ import "./styles/header.scss";
 
 const regenerator = require("regenerator-runtime/runtime");
 
-const serverLocalAddressTest = 'http://localhost:8080/test';
-
-
-console.log("Index JS!!");
-
 const sendTextToServer = async () => {
   alert("button clicked");
   const textToBeSent = document.getElementById("name").value;
@@ -21,18 +16,46 @@ const sendTextToServer = async () => {
   makeRequest(textToBeSent);
 };
 
-const makeRequest = async (data) => {
+
+// For testing the server's running
+const testCallToServer = async () => {
   const response = await fetch("/test");
   try {
-    console.log("Attempting to send to server");
-    serverGetResponse = await response.json();
-    console.log("GET sent to server. This is the object returned: ");
-    console.dir(serverGetResponse);
-    updateUI(serverGetResponse);
+    const data = await response.json();
+    console.dir(data);
+    document.getElementById("results").innerHTML = data.message;
+    return data;
   } catch (error) {
-    console.log("Error sending to server: ", error);
+    alert(error);
+    console.log(error);
   }
 };
+
+
+// async function GET data from server.js
+const callToServer2 = async () => {
+  let inputText = document.getElementById("textinput").value;
+  console.log("sending this text: " + inputText)
+  const response = await fetch("/text2", {
+    method: "POST",
+    credentials: "same-origin",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(inputText)
+  });
+  console.dir(response)
+  try {
+    const dataReturned = await response.json();
+    return dataReturned;
+    console.dir(dataReturned)
+  } catch (error) {
+    alert(error);
+    console.log(error);
+  }
+};
+
 
 // Method to update the DOM with the information returned from the GET call.
 const updateUI = async (data) => {
@@ -44,43 +67,14 @@ const updateUI = async (data) => {
   }
 };
 
-// async function GET data from server.js
-async function testCallToServer(serverLocalAddressTest) {
-	try {
-		const fetchData = await fetch(serverLocalAddressTest);
-		const res = await fetchData.json();
-		return res;
-	} catch (error) {
-		alert(error);
-    console.log(error)
-	}
-}
+
 
 document
-  .getElementById("submissionButton")
+  .getElementById("submissionButton2")
+  .addEventListener("click", callToServer2);
+
+document
+  .getElementById("submissionTestButton")
   .addEventListener("click", testCallToServer);
 
-
-
-     
-// async function POST data to server 
-async function postDataToServer(data, localServer) {
-	try {
-		await fetch(localServer, {
-			method: 'POST',
-			mode: 'cors',
-			cache: 'no-cache',
-			credentials: 'same-origin',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			redirect: 'follow',
-			referrerPolicy: 'no-referrer',
-			body: JSON.stringify(data),
-		});
-
-		return localServer;
-	} catch (error) {
-		alert(error);
-	}
-}
+//TODO: Button onSubmit, prevent default, chain POST and updateUI

@@ -1,10 +1,15 @@
 {
     "cSpell.ignoreWords": [
         "Udacity",
+        "formdata",
         "openweathermap"
     ],
     "cSpell.words": [
         "addentry",
-        "getweather"
+        "Aylien",
+        "getweather",
+        "Jimmydales",
+        "Meaningcloud",
+        "textapi"
     ]
 }
