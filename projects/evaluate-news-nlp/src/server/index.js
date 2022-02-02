@@ -88,37 +88,11 @@ app.post("/text2", function (req, res) {
 });
 
 const sendToMeaningcloud = async (textToAnalyse) => {
-  /*
-  const formdata = new FormData();
-  formdata.append("key", process.env.APIKEY);
-  formdata.append("txt", textToAnalyse);
-  formdata.append("lang", "EN");
-  */
-/*
-  const formdata = {
-    key: apiKey,
-    txt: textToAnalyse,
-    lang: "en",
-  };
-console.log(formdata.key)
-console.log("key should be: " + apiKey)
-console.log(formdata.txt)
-console.log("text received by func is: " + textToAnalyse)
-  const options = {
-    method: "POST",
-    body: formdata,
-    redirect: "follow",
-  };
-  */
   console.log(textToAnalyse)
   console.log(JSON.stringify(textToAnalyse))
   const urlToRequest = `${meaningcloudUrl}key=${apiKey}&txt=${textToAnalyse}&lang=en`;
   const responseAnalysed = await fetch(urlToRequest)
     
-    //"https://api.meaningcloud.com/sentiment-2.1",
-    //options
-  //);
-
   try {
     receivedResponse = await responseAnalysed.json();
     console.log(receivedResponse);
@@ -128,43 +102,3 @@ console.log("text received by func is: " + textToAnalyse)
   }
 };
 
-/*
-//junk
-const url = `https://api.meaningcloud.com/sentiment-2.1?key=${apiKey}&lang=en&${req.body}`;
-res.send(responseFromMeaningcloud);
-try {
-  json = await response.json();
-  console.log("printing JSON");
-  console.log(json);
-  return json;
-} catch (error) {
-  console.log("error", error);
-}
-
-// jimmy func to pick apart then delete
-let analyze = async function apiCall() {
-  const formdata = new FormData();
-  formdata.append("key", creds.application_key);
-  formdata.append("txt", text);
-  formdata.append("lang", "en"); // 2-letter code, like en es fr ...
-
-  const requestOptions = {
-    method: "POST",
-    body: formdata,
-    redirect: "follow",
-  };
-
-  const response = await fetch(
-    "https://api.meaningcloud.com/sentiment-2.1",
-    requestOptions
-  ); //?key=fc01f7cc1b734751ec308977748b84d3&lang=en&txt=This is a hardcoded message to see if i can get the api to work.")
-  try {
-    json = await response.json();
-    console.log("printing JSON");
-    console.log(json);
-    return json;
-  } catch (error) {
-    console.log("error", error);
-  }
-};
-*/
