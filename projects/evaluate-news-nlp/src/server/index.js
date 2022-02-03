@@ -17,9 +17,9 @@ const app = express();
 const fetch = require("node-fetch");
 const res = require("express/lib/response");
 const apiKey = process.env.API_KEY;
-const meaningcloudUrl = "https://api.meaningcloud.com/sentiment-2.1?";
+const meaningcloudUrl = 'https://api.meaningcloud.com/sentiment-2.1?';
 
-app.use(bodyParser.urlencoded({ extended: false }));
+// not sure if this is needed? app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("dist"));
 app.use(cors());
@@ -37,7 +37,8 @@ app.get("/", function (req, res) {
   console.log("GET call to / called");
   // res.sendFile('dist/index.html')
   // res.sendFile(path.resolve('src/client/views/index.html'))
-  res.sendFile("src/client/views/index.html");
+  res.sendFile('dist/index.html')
+  //res.sendFile("src/client/views/index.html");
 });
 
 app.get("/test", function (req, res) {
@@ -45,10 +46,6 @@ app.get("/test", function (req, res) {
   res.send(mockAPIResponse);
 });
 
-app.post("/test", function (req, res) {
-  console.log("POST test endpoint");
-  res.send(mockAPIResponse);
-});
 
 // Endpoint that mostly uses boilerplate code taken from Meaningcloud. For the first button
 app.get("/text", function (req, res) {
@@ -76,26 +73,24 @@ app.get("/text", function (req, res) {
     .catch((error) => console.log("error", error));
 });
 
-// FOr the second button
+
+// To receive POST call
 app.post("/text2", function (req, res) {
-  console.log("POST endpoint 2");
-  textToAnalyse = req.body;
-  console.log("Text received at endpoint is: ")
-  console.dir(textToAnalyse)
+  textToAnalyse = req.body.inputText;
+  console.log("Text received at POST endpoint is: ")
+  console.log(textToAnalyse)
   sendToMeaningcloud(textToAnalyse).then((receivedResponse) =>
     res.send(receivedResponse)
   );
 });
 
 const sendToMeaningcloud = async (textToAnalyse) => {
-  console.log(textToAnalyse)
-  console.log(JSON.stringify(textToAnalyse))
-  const urlToRequest = `${meaningcloudUrl}key=${apiKey}&txt=${textToAnalyse}&lang=en`;
+  const urlToRequest = `${meaningcloudUrl}key=${apiKey}&lang=auto&txt=${textToAnalyse}`;
+  console.log("sending API call to this URL: " + urlToRequest)
   const responseAnalysed = await fetch(urlToRequest)
-    
   try {
     receivedResponse = await responseAnalysed.json();
-    console.log(receivedResponse);
+    console.dir(receivedResponse);
     return receivedResponse;
   } catch (error) {
     console.log("error", error);

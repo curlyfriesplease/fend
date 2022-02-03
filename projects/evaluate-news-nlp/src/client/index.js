@@ -16,7 +16,6 @@ const sendTextToServer = async () => {
   makeRequest(textToBeSent);
 };
 
-
 // For testing the server's running
 const testCallToServer = async () => {
   const response = await fetch("/test");
@@ -32,30 +31,32 @@ const testCallToServer = async () => {
 };
 
 
-// async function GET data from server.js
 const callToServer2 = async () => {
   let inputText = document.getElementById("textinput").value;
-  console.log("sending this text: " + inputText)
+  console.log("sending this text: " + inputText);
   const response = await fetch("/text2", {
     method: "POST",
     credentials: "same-origin",
     mode: "cors",
+    cache: "no-cache",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(inputText)
+    redirect: "follow",
+    referrerPolicy: "no-referrer",
+    body: JSON.stringify({inputText})
   });
-  console.dir(response)
+  console.dir(response);
   try {
     const dataReturned = await response.json();
+    console.dir(dataReturned);
     return dataReturned;
-    console.dir(dataReturned)
   } catch (error) {
     alert(error);
     console.log(error);
+    return;
   }
 };
-
 
 // Method to update the DOM with the information returned from the GET call.
 const updateUI = async (data) => {
@@ -66,8 +67,6 @@ const updateUI = async (data) => {
     console.log("Error updating UI: ", error);
   }
 };
-
-
 
 document
   .getElementById("submissionButton2")

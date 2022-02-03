@@ -6,10 +6,12 @@
     ],
     "cSpell.words": [
         "addentry",
+        "APIKEY",
         "Aylien",
         "getweather",
         "Jimmydales",
         "Meaningcloud",
-        "textapi"
+        "textapi",
+        "textinput"
     ]
 }
