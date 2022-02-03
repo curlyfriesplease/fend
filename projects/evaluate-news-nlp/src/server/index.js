@@ -36,8 +36,8 @@ app.listen(port, function () {
 app.get("/", function (req, res) {
   console.log("GET call to / called");
   // res.sendFile('dist/index.html')
-  // res.sendFile(path.resolve('src/client/views/index.html'))
-  res.sendFile('dist/index.html')
+  res.sendFile(path.resolve('src/client/views/index.html'))
+  //res.sendFile('dist/index.html')
   //res.sendFile("src/client/views/index.html");
 });
 
@@ -46,7 +46,7 @@ app.get("/test", function (req, res) {
   res.send(mockAPIResponse);
 });
 
-
+/*
 // Endpoint that mostly uses boilerplate code taken from Meaningcloud. For the first button
 app.get("/text", function (req, res) {
   console.log("GET text endpoint called");
@@ -72,7 +72,7 @@ app.get("/text", function (req, res) {
     .then(({ status, body }) => console.log(status, body))
     .catch((error) => console.log("error", error));
 });
-
+*/
 
 // To receive POST call
 app.post("/text2", function (req, res) {
@@ -85,7 +85,7 @@ app.post("/text2", function (req, res) {
 });
 
 const sendToMeaningcloud = async (textToAnalyse) => {
-  const urlToRequest = `${meaningcloudUrl}key=${apiKey}&lang=auto&txt=${textToAnalyse}`;
+  const urlToRequest = `${meaningcloudUrl}key=${apiKey}&lang=en&txt=${textToAnalyse}`;
   console.log("sending API call to this URL: " + urlToRequest)
   const responseAnalysed = await fetch(urlToRequest)
   try {

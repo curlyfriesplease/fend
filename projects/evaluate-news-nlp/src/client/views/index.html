@@ -1,47 +1,70 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Test</title>
-  <!--      <link rel="stylesheet" href="/styles/resets.scss">
-        <link rel="stylesheet" href="/styles/base.scss">
-        <link rel="stylesheet" href="/styles/header.scss">
-        <link rel="stylesheet" href="/styles/form.scss">
-        <link rel="stylesheet" href="/styles/footer.scss">
-  -->  
-    </head>
+  <head>
+    <meta charset="utf-8" />
+    <title>Test</title>
+  </head>
 
-    <body>
+  <body>
+    <header>
+      <div class="">Logo</div>
+      <div class="">navigation</div>
+    </header>
 
-        <header>
-            <div class="">
-                Logo
+    <main>
+      <section>
+        <form class="" onsubmit="return Client.handleSubmit(event)">
+          <input
+            id="textinput"
+            type="text"
+            name="input"
+            value=""
+            placeholder="Input text here"
+          />
+          <input
+            type="submit"
+            name=""
+            value="submit"
+            onclick="return Client.handleSubmit(event)"
+            onsubmit="return Client.handleSubmit(event)"
+          />
+        </form>
+      </section>
+
+      <button id="submissionTestButton">Basic test</button>
+      <button id="submissionButton2">Call meaningcloud</button>
+
+      <section>
+        <strong>Form Results:</strong>
+        <div id="results">
+          <div id="scores">
+            <div>
+              Polarity:
+              <div class="scoreNumber" id="polarityScore">0</div>
             </div>
-            <div class="">
-                navigation
+            <div>
+              Confidence:
+              <div class="scoreNumber" id="confidenceScore">0</div>
             </div>
-        </header>
+            <div>
+              Agreement:
+              <div class="scoreNumber" id="agreementScore">0</div>
+            </div>
+            <div>
+              Irony:
+              <div class="scoreNumber" id="ironyScore">0</div>
+            </div>
+            <div>
+              Subjectivity:
+              <div class="scoreNumber" id="subjectivityScore">0</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
-        <main>
-            <section>
-                <form class="" onsubmit="return handleSubmit(event)">
-                    <input id="textinput" type="text" name="input" value="" placeholder="Input text here">
-                    <input type="submit" name="" value="submit" onclick="return handleSubmit(event)" onsubmit="return handleSubmit(event)">
-                </form>
-            </section>
-
-            <button id="submissionTestButton">Basic test</button>
-            <button id="submissionButton2">Call meaningcloud</button>
-
-            <section>
-                <strong>Form Results:</strong>
-                <div id="results"></div>
-            </section>
-        </main>
-
-        <footer>
-            <p>This is a footer</p>
-        </footer>
-
-    </body>
+    <footer>
+      <p>This is a footer</p>
+    </footer>
+  </body>
 </html>
