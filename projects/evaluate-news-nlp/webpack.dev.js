@@ -10,7 +10,7 @@ module.exports = {
     devtool: 'source-map',
 
     output: {
-        clean: true, // clean the dist folder 
+    //    clean: true, // clean the dist folder 
         path: path.resolve(__dirname,'dist'),
         filename: 'main.js',
         libraryTarget: 'var',

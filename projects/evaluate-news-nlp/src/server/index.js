@@ -1,13 +1,17 @@
+// Allow for environment vars
 const dotenv = require("dotenv");
 dotenv.config();
 
 // Setup empty JS object to act as endpoint for all routes
 projectData = {};
 
+
 // Formdata module, so that NodeJS can make use of the FormData() method
 var FormData = require("form-data");
 var fs = require("fs");
 
+
+// Import express, middleware, declare variables.
 var path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -36,7 +40,7 @@ app.listen(port, function () {
 app.get("/", function (req, res) {
   console.log("GET call to / called");
   // res.sendFile('dist/index.html')
-  res.sendFile(path.resolve('src/client/views/index.html'))
+  res.sendFile(path.resolve('../client/views/index.html'))
   //res.sendFile('dist/index.html')
   //res.sendFile("src/client/views/index.html");
 });

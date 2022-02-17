@@ -1,12 +1,55 @@
 form {
-    border: 1px solid #545454;
-    border-radius: 3px;
-    padding: 40px;
+  border: 1px solid #545454;
+  border-radius: 30px;
+  padding: 40px;
 }
 
 input {
-    padding: 5px 20px;
-    width: 100%;
-    line-height: 16px;
-    margin: 10px 0;
+  padding: 5px 20px;
+  width: 100%;
+  line-height: 16px;
+  margin: 10px 0;
+}
+
+#results {
+    background: lightslategrey 0.5;
+    border: 1px solid #545454;
+    border-radius: 30px;
+    padding: 40px;
+}
+
+#scores {
+  display: grid;
+  max-width: 900px;
+  grid-template-areas:
+    "pol pol pol conf conf conf"
+    "agr agr iro iro subj subj";
+  grid-template-columns: 16.67% 16.67% 16.67% 16.67% 16.67% 16.67%;
+  grid-template-rows: 80px 50px;
+
+}
+
+#polarity {
+  grid-area: pol;
+}
+
+#confidence {
+  grid-area: conf;
+}
+
+#agreement {
+  grid-area: agr;
+}
+
+#irony {
+  grid-area: iro;
+}
+
+#subjectivity {
+  grid-area: subj;
+}
+
+.scoreNumber {
+    border: 20px;
+    justify-content: center;
 }

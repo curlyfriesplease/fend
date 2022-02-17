@@ -2,18 +2,20 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
-    <title>Test</title>
+    <title>MeaningMate sentiment analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shizuru&family=Syncopate&display=swap" rel="stylesheet">
   </head>
 
   <body>
     <header>
-      <div class="">Logo</div>
-      <div class="">navigation</div>
+      <div class="">Meaning<strong>Mate</strong></div>
     </header>
 
     <main>
       <section>
-        <form class="" onsubmit="return Client.handleSubmit(event)">
+          <form id="form">
           <input
             id="textinput"
             type="text"
@@ -25,36 +27,30 @@
             type="submit"
             name=""
             value="submit"
-            onclick="return Client.handleSubmit(event)"
-            onsubmit="return Client.handleSubmit(event)"
           />
         </form>
       </section>
 
-      <button id="submissionTestButton">Basic test</button>
-      <button id="submissionButton2">Call meaningcloud</button>
-
       <section>
-        <strong>Form Results:</strong>
         <div id="results">
           <div id="scores">
-            <div>
+            <div id="polarity">
               Polarity:
               <div class="scoreNumber" id="polarityScore">0</div>
             </div>
-            <div>
+            <div id="confidence">
               Confidence:
               <div class="scoreNumber" id="confidenceScore">0</div>
             </div>
-            <div>
+            <div id="agreement">
               Agreement:
               <div class="scoreNumber" id="agreementScore">0</div>
             </div>
-            <div>
+            <div id="irony">
               Irony:
               <div class="scoreNumber" id="ironyScore">0</div>
             </div>
-            <div>
+            <div id="subjectivity">
               Subjectivity:
               <div class="scoreNumber" id="subjectivityScore">0</div>
             </div>
@@ -64,7 +60,7 @@
     </main>
 
     <footer>
-      <p>This is a footer</p>
+      <p><center>Data provided by <a href="https://www.meaningcloud.com/developer/sentiment-analysis">Meaningcloud</a></center></p>
     </footer>
   </body>
 </html>

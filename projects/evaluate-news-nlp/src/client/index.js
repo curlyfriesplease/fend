@@ -1,5 +1,4 @@
 
-import { testCallToServer } from "./js/calls";
 import { callToServer } from "./js/calls";
 import { handleSubmit } from "./js/formHandler";
 
@@ -8,6 +7,13 @@ import "./styles/base.scss";
 import "./styles/footer.scss";
 import "./styles/form.scss";
 import "./styles/header.scss";
+
+document
+  .getElementById("form")
+  .addEventListener("submit", handleSubmit);
+
+export { callToServer, handleSubmit }
+
 
 // const regenerator = require("regenerator-runtime/runtime");
 
@@ -23,13 +29,3 @@ const updateUI = async (data) => {
   }
 };
 */
-
-document
-  .getElementById("submissionButton2")
-  .addEventListener("click", callToServer);
-
-document
-  .getElementById("submissionTestButton")
-  .addEventListener("click", testCallToServer);
-
-export { testCallToServer, callToServer, handleSubmit }
