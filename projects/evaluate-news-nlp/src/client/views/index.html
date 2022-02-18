@@ -65,13 +65,21 @@
             </div>
           </div>
         </div>
-        <div id="loading"><img src="./src/client/media/loading.gif"</div>
-        
+        <div id="loading"><img src="https://images2.imgbox.com/f2/72/8BuUMrUN_o.gif"</div>
       </section>
     </main>
 
     <footer>
       <p><center>Data provided by <a href="https://www.meaningcloud.com/developer/sentiment-analysis">Meaningcloud</a></center></p>
     </footer>
+    <script>
+      // Check that service workers are supported
+      if ('serviceWorker' in navigator) {
+          // Use the window load event to keep the page load performant
+          window.addEventListener('load', () => {
+              navigator.serviceWorker.register('/service-worker.js');
+          });
+      }
+     </script>
   </body>
 </html>

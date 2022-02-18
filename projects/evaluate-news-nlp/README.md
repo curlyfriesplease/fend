@@ -1,4 +1,4 @@
-# Weather-Journal App Project
+# Text Meaning Analysis App Project
 
 ## Overview
 'Meaningmate' is a simple text sentiment analysis app.
