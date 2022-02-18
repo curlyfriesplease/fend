@@ -11,6 +11,7 @@ export const updateUI = (
   checkConfidence(confidenceScore);
   checkIrony(ironyScore);
   checkSubjectivity(subjectivityScore);
+  document.getElementById("loading").style.visibility = "hidden";
 };
 
 const checkAgreement = (score) => {
@@ -31,22 +32,22 @@ const checkPolarity = (score) => {
   console.log("::: Updating polarity score with this value: " + score);
   switch (score) {
     case "P+":
-      document.getElementById("polarityScore").innerText = "strong positive";
+      document.getElementById("polarityScore").innerText = "Strong positive";
       break;
     case "P":
-      document.getElementById("polarityScore").innerText = "positive";
+      document.getElementById("polarityScore").innerText = "Positive";
       break;
     case "NEU":
-      document.getElementById("polarityScore").innerText = "neutral";
+      document.getElementById("polarityScore").innerText = "Neutral";
       break;
     case "N":
-      document.getElementById("polarityScore").innerText = "negative";
+      document.getElementById("polarityScore").innerText = "Negative";
       break;
     case "N+":
-      document.getElementById("polarityScore").innerText = "strong negative";
+      document.getElementById("polarityScore").innerText = "Strong negative";
       break;
     case "NONE":
-      document.getElementById("polarityScore").innerText = "without sentiment";
+      document.getElementById("polarityScore").innerText = "Without sentiment";
       break;
   }
 };

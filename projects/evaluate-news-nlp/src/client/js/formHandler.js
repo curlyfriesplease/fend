@@ -3,6 +3,7 @@ import { updateUI } from "./processResponse";
 
 export const handleSubmit = async (event) => {
   event.preventDefault();
+  document.getElementById("loading").style.visibility = "visible";
 console.log("::: ✔️ Handle Submit function called :::")
   // check text was put into the form field
   const textToBeSent = document.getElementById("textinput").value;
