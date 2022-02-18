@@ -28,5 +28,6 @@ console.log("::: ✔️ Handle Submit function called :::")
         ironyScore,
         subjectivityScore
       );
+      document.getElementById("results").style.visibility = "visible";
     });
 };

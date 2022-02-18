@@ -4,6 +4,10 @@ form {
   padding: 40px;
 }
 
+main {
+  font-family: "Baloo Tamma 2", cursive;
+}
+
 input {
   padding: 5px 20px;
   width: 100%;
@@ -12,10 +16,11 @@ input {
 }
 
 #results {
-    background: lightslategrey 0.5;
-    border: 1px solid #545454;
-    border-radius: 30px;
-    padding: 40px;
+  background: lightslategrey 0.5;
+  border: 1px solid #545454;
+  border-radius: 30px;
+  padding: 40px;
+    visibility: hidden
 }
 
 #scores {
@@ -26,7 +31,7 @@ input {
     "agr agr iro iro subj subj";
   grid-template-columns: 16.67% 16.67% 16.67% 16.67% 16.67% 16.67%;
   grid-template-rows: 80px 50px;
-
+  row-gap: 2em;
 }
 
 #polarity {
@@ -49,7 +54,27 @@ input {
   grid-area: subj;
 }
 
+.scoreContainerTopRow {
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.8em
+}
+
+.scoreContainerLowerRow {
+  //justify-content: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.scoreLabel {
+  flex-basis: 50%;
+}
 .scoreNumber {
-    border: 20px;
-    justify-content: center;
+  border: 20px;
+  justify-content: center;
+  flex-basis: 50%;
+  font-size: 1.5em;
 }

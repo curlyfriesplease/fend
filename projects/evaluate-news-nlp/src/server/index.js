@@ -50,36 +50,8 @@ app.get("/test", function (req, res) {
   res.send(mockAPIResponse);
 });
 
-/*
-// Endpoint that mostly uses boilerplate code taken from Meaningcloud. For the first button
-app.get("/text", function (req, res) {
-  console.log("GET text endpoint called");
-  const formdata = new FormData();
-  formdata.append("key", process.env.APIKEY);
-  formdata.append("txt", "a bunch of testing text oh great isn't that nice");
-  formdata.append("lang", "EN"); // 2-letter code, like en es fr ...
-
-  const requestOptions = {
-    method: "POST",
-    body: formdata,
-    redirect: "follow",
-  };
-
-  const response = fetch(
-    "https://api.meaningcloud.com/sentiment-2.1",
-    requestOptions
-  )
-    .then((response) => ({
-      status: response.status,
-      body: response.json(),
-    }))
-    .then(({ status, body }) => console.log(status, body))
-    .catch((error) => console.log("error", error));
-});
-*/
-
 // To receive POST call
-app.post("/text2", function (req, res) {
+app.post("/text", function (req, res) {
   textToAnalyse = req.body.inputText;
   console.log("Text received at POST endpoint is: ")
   console.log(textToAnalyse)

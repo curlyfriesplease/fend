@@ -5,7 +5,7 @@
     <title>MeaningMate sentiment analysis</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shizuru&family=Syncopate&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&family=Shizuru&family=Syncopate&display=swap" rel="stylesheet">
   </head>
 
   <body>
@@ -34,24 +34,34 @@
       <section>
         <div id="results">
           <div id="scores">
-            <div id="polarity">
+            <div class="scoreContainerTopRow" id="polarity">
+              <div class="scoreLabel">
               Polarity:
+              </div>
               <div class="scoreNumber" id="polarityScore">0</div>
             </div>
-            <div id="confidence">
+            <div class="scoreContainerTopRow" id="confidence">
+              <div class="scoreLabel">
               Confidence:
+            </div>
               <div class="scoreNumber" id="confidenceScore">0</div>
             </div>
-            <div id="agreement">
+            <div class="scoreContainerLowerRow" id="agreement">
+              <div class="scoreLabel">
               Agreement:
+            </div>
               <div class="scoreNumber" id="agreementScore">0</div>
             </div>
-            <div id="irony">
+            <div class="scoreContainerLowerRow" id="irony">
+              <div class="scoreLabel">
               Irony:
+            </div>
               <div class="scoreNumber" id="ironyScore">0</div>
             </div>
-            <div id="subjectivity">
+            <div class="scoreContainerLowerRow" id="subjectivity">
+              <div class="scoreLabel">
               Subjectivity:
+            </div>
               <div class="scoreNumber" id="subjectivityScore">0</div>
             </div>
           </div>
