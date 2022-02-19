@@ -66,7 +66,7 @@ const checkConfidence = (score) => {
   ).innerHTML = `<span style="color:${confidenceColour}">${score}</span>`;
 };
 
-const checkIrony = (score) => {
+export const checkIrony = (score) => {
   let ironyColour;
   switch (score) {
     case "NONIRONIC":

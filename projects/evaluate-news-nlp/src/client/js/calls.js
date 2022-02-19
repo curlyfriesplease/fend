@@ -41,5 +41,6 @@ export const testCall = async () => {
     return data;
   } catch (err) {
     console.log("Error calling test endpoint: " + err);
+    return
   }
 };
